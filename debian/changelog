@@ -1,5 +1,354 @@
-template-repository (1.0-1) unstable; urgency=medium
+mpfi (1.5.4+ds-4) unstable; urgency=medium
 
-  * Initial release
+  * FTBFS fix release, technical typo in test/type_js introduced type mismatch
+    (Closes: #1086340).
+  * Debianization:
+    - d/patches/*:
+      - d/p/upstream-fix-tests-gcc14-technical_typo.patch, introduced.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Jerome Benoit <calculus@rezozer.net>  Sun, 10 Nov 2024 19:59:30 +0000
+
+mpfi (1.5.4+ds-3) unstable; urgency=medium
+
+  * Debianization:
+    - d/watch, correct;
+    - d/control:
+      - Standards-Version, bump to version 4.7.0 (no change);
+
+ -- Jerome Benoit <calculus@rezozer.net>  Sat, 18 May 2024 11:20:38 +0000
+
+mpfi (1.5.4+ds-2) unstable; urgency=medium
+
+  * Debianization:
+    - d/patches/*:
+      - d/p/upstream-tests-set_ld-not64bits-SKIP.patch, introduce.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Thu, 21 Mar 2024 01:40:56 +0000
+
+mpfi (1.5.4+ds-1) unstable; urgency=medium
+
+  * New upstream nano release (Closes: #1067068).
+  * Debianization:
+    - d/libmpfi0.symbols, refresh;
+    - d/p/upstream-source-cleanup.patch, introduce;
+    - d/a/examples, copyright year-tuples, update;
+    - d/README.source, introduce.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Tue, 19 Mar 2024 20:50:48 +0000
+
+mpfi (1.5.3+ds-7) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Remove constraints unnecessary since buster (oldstable):
+    + Build-Depends: Drop versioned constraint on cproto, libgmp-dev and
+      libmpfr-dev.
+    + libmpfi-dev: Drop versioned constraint on libmpfi-dev and libmpfi0-dev in
+      Conflicts.
+    + libmpfi-dev: Drop versioned constraint on libmpfi0-dev in Replaces.
+    + libmpfi-dev-common: Drop versioned constraint on libmpfi-dev in Replaces.
+    + libmpfi-dev-common: Drop versioned constraint on libmpfi-dev in Breaks.
+    + libmpfi-doc: Drop versioned constraint on libmpfi-dev in Replaces.
+    + libmpfi-doc: Drop versioned constraint on libmpfi-dev in Breaks.
+  * Remove an obsolete maintscript entry.
+  * Update renamed lintian tag names in lintian overrides.
+
+  [ Jerome Benoit ]
+  * Update standards version to 4.6.2, no changes needed.
+  * libmpfi-dev{,-common}: Discard lintian-overrides.
+  * Update copyright year-tuples.
+  + libmpfi-dev-common: move to Replaces/Conflicts scheme
+    without versioned constraint.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Mon, 18 Mar 2024 10:40:59 +0000
+
+mpfi (1.5.3+ds-6) unstable; urgency=medium
+
+  * Debianization:
+    - d/control:
+      - Homepage field, update;
+      - debhelper, migrate to version 13 (discar d/compat);
+      - Standards-Version, bump to version 4.6.0 (no change);
+    - d/rules:
+      - override_dh_missing target, provide;
+    - d/copyright:
+      - Upstream-Contact field, refresh;
+      - Source field, update;
+      - copyright year tuples, update;
+    - d/patches:
+      - d/p/debianization-examples.patch, provide Forwarded field;
+    - d/watch, migration to gitlab.inria.fr.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Fri, 15 Oct 2021 08:03:28 +0000
+
+mpfi (1.5.3+ds-5) unstable; urgency=medium
+
+  * SBF: correct Maintainer address (Closes: #970758).
+  * Debianization:
+    - debian/control:
+      - Maintainer address, correct;
+      - Homepage URI, secure;
+    - debian/copyright:
+      - Format URI, correct.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Mon, 02 Nov 2020 20:52:39 +0000
+
+mpfi (1.5.3+ds-4) unstable; urgency=medium
+
+  * Debianization:
+    - debian/copyright:
+      - copyright year tuples, update;
+    - debian/control:
+      - Maintainer address, update;
+      - Rules-Requires-Root, introduce and set to no;
+      - Standards Version, bump to 4.5.0 (no change);
+    - debian/tests:
+      - d/t/build-examples, use AUTOPKGTEST_TMP ;
+    - debian/rules:
+      - override_dh_auto_build-indep target, compose;
+      - override_dh_auto_install-indep target, fix;
+    - debian/patches:
+      - d/p/debianization.patch, introduce (Closes: #959697).
+
+ -- Jerome Benoit <calculus@rezozer.net>  Tue, 05 May 2020 20:12:00 +0000
+
+mpfi (1.5.3+ds-3) unstable; urgency=medium
+
+  * Debianization:
+    - debian/control:
+      - debhelper, bump to 12;
+      - Standards Version, bump to 4.4.0 (no change);
+      - libmpfi0-dev, discard (Closes: #940733);
+      - Vcs-* fields, migration to Salsa;
+    - debian/libmpfi0.symbols:
+      - Build-Depends-Package, introduce;
+    - debian/rules:
+      - get-orig-source target, discard.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Thu, 26 Sep 2019 20:13:03 +0000
+
+mpfi (1.5.3+ds-2) unstable; urgency=medium
+
+  * RC bug fix release (Closes: #888560), harden d/control.
+  * Debianization:
+    - debian/control: see above;
+    - debian/source/lintian-overrides, tag, rename.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Sat, 27 Jan 2018 13:25:14 +0000
+
+mpfi (1.5.3+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Debianization:
+    - debian/copyright:
+      - Files-Excluded field, update;
+      - format URI, secure;
+    - debian/patches/*:
+      - d/p/upstream-autotools-refresh.patch ,
+      - d/p/upstream-libtoolization-version_script.patch , update;
+      - d/p/upstream-fix-version_mismatch.patch ,
+        d/p/upstream-source-warnings-silence.patch ,
+        d/p/upstream-source-system_wide_includes.patch , integrated,
+         thanks to the upstream team.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Thu, 18 Jan 2018 19:18:11 +0000
+
+mpfi (1.5.2+ds-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Debianization:
+    - debian/copyright:
+      - Sources field, URI, secure;
+      - Files-Excluded field, refresh;
+      - copyright date, refresh;
+    - debian/control:
+      - debhelper, bump to 11;
+      - Standards Version, bump to 4.1.3 (no change);
+      - Priority field, reset from extra to optional;
+    - debian/watch, bump to version 4;
+    - debian/rules:
+      - debhelper, bump to 11;
+      - get-orig-source target, simplify;
+      - override_dh_install(doc|example)s:
+        --doc-main-package set up to libmpfi-doc;
+    - debian/patches/*:
+      - d/p/upstream-autotools-refresh.patch, update;
+      - d/p/upstream-libtoolization-version_script.patch, update;
+      - d/p/upstream-fix-version_mismatch.patch, introduce;
+    - debian/adhoc/*, correct and refresh.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Sat, 13 Jan 2018 06:06:29 +0000
+
+mpfi (1.5.1+ds-4) unstable; urgency=medium
+
+  * RC bug fix release (Closes: #825600), harden libdev transition.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Sat, 04 Jun 2016 12:01:08 +0000
+
+mpfi (1.5.1+ds-3) unstable; urgency=medium
+
+  * Debianization:
+    - debian/copyright, refresh;
+    - debian/control:
+      - Standards Version, bump to 3.9.8 (no change);
+      - Vcs-*, secure;
+      - debug symbol package, drop off in favour of automatic generation;
+      - SONNAME/SOINDEX being removed from libdev package names, initiate;
+    - debian/rules:
+      - dpkg-buildflags, add hardening=+all;
+      - debug symbol package, drop off (see above);
+      - symlink policy for documentation directories, set;
+    - debian/adhoc/examples, introduce;
+    - debian/tests/*, introduce.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Mon, 09 May 2016 23:22:08 +0000
+
+mpfi (1.5.1+ds-2) unstable; urgency=medium
+
+  * RC bug fix release (Closes: #790509), stabilize libdev transition.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Tue, 30 Jun 2015 11:40:07 +0000
+
+mpfi (1.5.1+ds-1) unstable; urgency=medium
+
+  * New maintainer (Closes: #771883).
+  * Debianization:
+    - debian/copyright:
+      - in DEP-5 format, bump;
+      - Files-Excluded field, introduce;
+      - refresh;
+    - debian/control:
+      - debhelper build-dep to >= 9, bump;
+      - Standards Version 3.9.6, bump;
+      - Build-Depends field, refresh;
+      - Multi-Arch support, achieve (Closes: 737387);
+      - Vcs-* headers, refresh;
+    - debian/watch, provide;
+    - debian/rules:
+      - full dh integration, refresh;
+      - build-arch/build-indep scheme, introduce;
+      - get-orig-source uscan based target which downloads the currently
+        packaged upstream tarball and repacks it wrt Files-Excluded;
+      - default target which basically queries package status with uscan
+        -- output in DEHS format;
+    - debian/patches/:
+      - patches in DEP-3 format;
+      - autotoolization, refresh;
+      - libtoolization:
+        - script-version, create on fly;
+        - library versionning, introduce;
+      - minor and cosmetic fixes;
+    - gpg-signature check support, neutralize.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Wed, 17 Jun 2015 12:22:05 +0000
+
+mpfi (1.5.1-3) unstable; urgency=medium
+
+  * Apply patch by Logan Rosen to fix FTBFS on ppc64el (closes: #734570).
+
+ -- Laurent Fousse <lfousse@debian.org>  Sun, 09 Feb 2014 14:03:28 -0800
+
+mpfi (1.5.1-2) unstable; urgency=low
+
+  * Apply patch from Ubuntu fixing build for AArch64
+    (closes: #727466).
+
+ -- Laurent Fousse <lfousse@debian.org>  Wed, 13 Nov 2013 20:38:39 -0800
+
+mpfi (1.5.1-1) unstable; urgency=low
+
+  * New upstream release:
+    + Fixes bug in sub_fr (closes: #674341).
+    + Remove patch already applied upstream.
+
+ -- Laurent Fousse <lfousse@debian.org>  Sat, 26 May 2012 01:55:23 +0000
+
+mpfi (1.5-5) unstable; urgency=low
+
+  * Properly switch to quilt format (closes: #643220).
+
+ -- Laurent Fousse <lfousse@debian.org>  Tue, 27 Sep 2011 22:05:52 +0200
+
+mpfi (1.5-4) unstable; urgency=low
+
+  * Build-depends on the new libgmp-dev package.
+
+ -- Laurent Fousse <lfousse@debian.org>  Sun, 06 Mar 2011 22:23:11 +0100
+
+mpfi (1.5-3) unstable; urgency=low
+
+  * Apply patch by Nobuhiro Iwamatsu, fixing build on sh4
+    (closes: #593420).
+
+ -- Laurent Fousse <laurent@komite.net>  Wed, 18 Aug 2010 21:52:37 +0200
+
+mpfi (1.5-2) unstable; urgency=low
+
+  * Apply patch by Philippe Theveny to fix tis_zero.
+
+ -- Laurent Fousse <laurent@komite.net>  Fri, 13 Aug 2010 16:11:44 +0200
+
+mpfi (1.5-1) unstable; urgency=low
+
+  * New upstream version.
+  * Added Vcs-* links.
+
+ -- Laurent Fousse <laurent@komite.net>  Fri, 13 Aug 2010 14:09:16 +0200
+
+mpfi (1.5~r525-1) unstable; urgency=low
+
+  * New upstream snapshot.
+
+ -- Laurent Fousse <laurent@komite.net>  Tue, 27 Jul 2010 21:34:37 +0200
+
+mpfi (1.4-1) unstable; urgency=low
+
+  * New upstream version.
+  * Switch to quilt format.
+  * Remove references to mpfr_random (closes: #590355).
+  * Upgrade Standard-Version to 3.9.0 (no change needed).
+
+ -- Laurent Fousse <laurent@komite.net>  Mon, 26 Jul 2010 14:11:18 +0200
+
+mpfi (1.3.4~rc4~cvs20080519-1) unstable; urgency=low
+
+  * Package current CVS version.
+  * Add new dynamic library package (closes: #474080).
+  * Upgrade Standard-Version to 3.7.3 (no change needed).
+  * Drop cdbs.
+
+ -- Laurent Fousse <laurent@komite.net>  Fri, 23 May 2008 16:18:30 +0200
+
+mpfi (1.3.4~rc3-1) unstable; urgency=low
+
+  * New upstream release candidate.
+  * Upgrade Standard-Version to 3.7.2 (no change needed).
+
+ -- Laurent Fousse <laurent@komite.net>  Mon, 22 Oct 2007 14:40:41 +0200
+
+mpfi (1.3.3-4) unstable; urgency=low
+
+  * Apply patch submitted by Sylvain Chevillard to fix
+    a bug in trigonometric functions (closes: #400909).
+
+ -- Laurent Fousse <laurent@komite.net>  Thu,  4 Jan 2007 16:48:22 +0100
+
+mpfi (1.3.3-3) unstable; urgency=low
+
+  * Apply mpfr-2.2.0 compatibility patch supplied by Patrick Pelissier
+    (closes: #336703).
+
+ -- Laurent Fousse <laurent@komite.net>  Tue,  1 Nov 2005 11:13:48 +0100
+
+mpfi (1.3.3-2) unstable; urgency=low
+
+  * Changed packaging to use cdbs.
+  * Applied patch by Guillaume Melquiond to make mpfi usable with C++ code.
+  * The description is now more explicit on the fact it is a library.
+
+ -- Laurent Fousse <laurent@komite.net>  Mon,  5 Sep 2005 11:26:05 +0200
+
+mpfi (1.3.3-1) unstable; urgency=low
+
+  * Initial release (closes: #322534).
+
+ -- Laurent Fousse <laurent@komite.net>  Wed, 10 Aug 2005 15:47:28 +0200

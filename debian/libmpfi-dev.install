@@ -1,0 +1,3 @@
+usr/lib/*/libmpfi.so
+usr/lib/*/libmpfi.a
+#usr/lib/*/pkgconfig/*

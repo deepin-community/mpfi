@@ -1,0 +1,6 @@
+The upstream source tarball of version 1.5.4 is actually inadequately archived.
+The upstream team corrected the issue a month ago. For all theses reasons the
+debian-source tarball was exceptionally created by hand. The d/watch file was
+not modified and (2) that the Files-Excluded list was respected.
+
+ -- Jerome Benoit <calculus@rezozer.net>  Tue, 19 Mar 2024 20:49:07 +0000

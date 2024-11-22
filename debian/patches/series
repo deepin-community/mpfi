@@ -1,0 +1,6 @@
+upstream-fix-tests-gcc14-technical_typo.patch
+upstream-source-cleanup.patch
+upstream-tests-set_ld-not64bits-SKIP.patch
+upstream-autotools-refresh.patch
+upstream-libtoolization-version_script.patch
+debianization.patch

@@ -1,0 +1,3 @@
+version=4
+opts=repack,repacksuffix=+ds,compression=xz,dversionmangle=s/\+ds//,uversionmangle=s/-(rc\d*)$/~$1/,searchmode=plain \
+https://gitlab.inria.fr/mpfi/mpfi/tags?sort=updated_desc -/archive/\d[\d.]+/mpfi-(\d[\d.]+)\.tar\.bz2

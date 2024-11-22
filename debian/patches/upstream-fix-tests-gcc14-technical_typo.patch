@@ -1,0 +1,20 @@
+Description: upstream: fix: tests: type_js: technical typo
+ Correct a technical typo that, on some 32bits architectures,
+ introduces a type mismatch. This issue was detected with gcc 14
+ (see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1086340).
+Origin: debian
+Forwarded: by-email
+Author: Jerome Benoit <calculus@rezozer.net>
+Last-Update: 2024-10-10
+
+--- a/tests/type_js.c
++++ b/tests/type_js.c
+@@ -42,7 +42,7 @@
+   /* [2] expected value */
+   read_mpfi (fp, expected);
+   /* [3] integral operand */
+-  read_sj (fp, &(MPFI_FUN_ARG (*this, 3, si)));
++  read_sj (fp, &(MPFI_FUN_ARG (*this, 3, sj)));
+ 
+   /* data validation */
+   if (mpfi_get_prec (got) != mpfi_get_prec (expected)) {

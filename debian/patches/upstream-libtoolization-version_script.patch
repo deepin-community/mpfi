@@ -1,0 +1,71 @@
+Description: upstream -- libtoolization -- version script support
+ Provides version scripts [1] for the shipped libraries. The map
+ (or version script) is basically generated from the package headers
+ with the help of cproto(1). The version scripts are generated on the
+ fly thought the [auto]make machinery (in maintainer-mode).
+ Meant to be submitted to the upstream maintainer team.
+ [1] https://www.gnu.org/software/gnulib/manual/html_node/LD-Version-Scripts.html
+Origin: debian
+Author: Jerome Benoit <calculus@rezozer.net>
+Last-Update: 2018-01-17
+
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -1,3 +1,5 @@
++CPROTO = cproto
++
+ include_HEADERS = mpfi.h mpfi_io.h
+ 
+ lib_LTLIBRARIES = libmpfi.la
+@@ -56,3 +58,29 @@
+ libmpfi_la_LDFLAGS = -no-undefined
+ 
+ AM_CPPFLAGS =-I$(top_srcdir)
++
++libmpfi_la_LD_VERSION_SCRIPT=
++if HAVE_LD_VERSION_SCRIPT
++libmpfi_la_LD_VERSION_SCRIPT+= -Wl,--version-script=mpfi.map
++endif
++
++libmpfi_la_LDFLAGS += -version-info $(LIBMPFI_LT_VERSION) $(libmpfi_la_LD_VERSION_SCRIPT)
++
++if MAINTAINER_MODE
++
++BUILT_SOURCES = mpfi.map
++
++mpfi.map: $(include_HEADERS)
++
++endif
++
++EXTRA_DIST = $(BUILT_SOURCES)
++MAINTAINERCLEANFILES = $(BUILT_SOURCES)
++
++%.map :
++	_MAPNAME=$$(echo $(patsubst %.map,%,$@) | tr '[a-z]' '[A-Z]') ; \
++	printf "LIB%s_%d.%d.%d {\nglobal:\n" $$_MAPNAME $(subst :, ,$(LIBMPFI_LT_VERSION)) > $@ ;
++	$(CPROTO) -I$(top_srcdir)/src -X 1 -f 0 $^ | \
++			sed '/^\/\*/d;s/(\*\([_a-z0-9]*\))/\1/g;s/()//g;s/\*//g' | rev | cut -d ' ' -f1 | rev | sort -u \
++		>> $@
++	printf "\nlocal: *;\n};\n" >> $@
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,3 +1,7 @@
++## Library versioning (C:R:A == current:revision:age)
++export LIBMPFI_LT_VERSION = 0:0:0
++
++
+ ACLOCAL_AMFLAGS = -I m4
+ 
+ SUBDIRS = src tests doc
+--- a/configure.ac
++++ b/configure.ac
+@@ -16,6 +16,9 @@
+ # Check for which system.
+ AC_CANONICAL_HOST
+ 
++# check linker script support
++gl_LD_VERSION_SCRIPT
++
+ dnl Extra arguments to configure
+ AC_ARG_WITH([mpfr_include],
+             [AS_HELP_STRING([--with-mpfr-include=DIR],[MPFR include directory])],

@@ -1,0 +1,32 @@
+Description: upstream -- tests: set_ld: SKIP
+ Implement for the set_ld test a SKIP-exit for long doubles
+ that are not of 64 bits precision.
+Origin: debian
+Forwarded: by email
+Author: Jerome Benoit <calculus@rezozer.net>
+Last-Update: 2024-03-21
+
+--- a/tests/type_il.c
++++ b/tests/type_il.c
+@@ -66,16 +66,19 @@
+ 
+   inex = f_IL (got, op);
+   if (inex != expected_inex || !same_value (got, expected)) {
++    int skipflag = 0;
+     printf ("Failed line %lu.\nop = %La", test_line_number, op);
+     printf ("\ngot      = ");
+     mpfi_out_str (stdout, 16, 0, got);
+     printf ("\nexpected = ");
+     mpfi_out_str (stdout, 16, 0, expected);
+     putchar ('\n');
+-    if (inex != expected_inex)
++    if (inex != expected_inex) {
+       printf ("inexact flag: got = %u, expected = %u\n", inex, expected_inex);
++      skipflag = 1;
++    }
+ 
+-    exit (1);
++    exit (skipflag?77:1);
+   }
+ }
+ 

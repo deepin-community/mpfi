@@ -1,0 +1,48 @@
+Description: upstream -- source: clean up
+ Discard obsoleted bit of codes.
+Origin: debian
+Forwarded: no needed
+Author: Jerome Benoit <calculus@rezozer.net>
+Last-Update: 2024-03-19
+
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -32,7 +32,7 @@
+    asin.c asinh.c atan2.c atan.c atanh.c bisect.c blow.c	\
+    cbrt.c clear.c clears.c cmp.c cmp_sym_pi.c constants.c cos.c	\
+    cosh.c csc.c csch.c cot.c coth.c d_div.c d_sub.c diam.c	\
+-   div.c div_2exp.c div_2si.c div_2ui.c div_d.c div_ext.c div_fr.c	\
++   div.c div_2exp.c div_2si.c div_2ui.c div_d.c div_fr.c	\
+    div_q.c div_si.c div_ui.c div_z.c erandom.c error.c exp.c 	\
+    exp2.c expm1.c fr_div.c fr_sub.c get_endpoints.c get_fr.c	\
+    get_d.c get_prec.c get_version.c has_zero.c hypot.c		\
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -3,7 +3,7 @@
+ 
+ check_LTLIBRARIES = libmpfi-tests.la
+ libmpfi_tests_la_SOURCES = mpfi-tests.h read_data.c random.c	\
+-    type_i.c type_ii.c type_iii.c type_iiii.c type_iu.c type_is.c		\
++    type_i.c type_ii.c type_iii.c type_iu.c type_is.c		\
+     type_id.c type_if.c type_il.c type_iz.c type_iq.c type_ir.c type_iiu.c		\
+     type_iis.c type_iid.c type_iiz.c type_iiq.c type_iir.c	\
+     type_iui.c type_isi.c type_idi.c type_izi.c type_iqi.c	\
+@@ -40,7 +40,7 @@
+     tcmp_fr tcmp_q tcmp_si tcmp_ui tcmp_z tconst_catalan	\
+     tconst_euler tconst_log2 tconst_pi tcos tcosh tcot tcoth	\
+     tcsc tcsch td_div td_sub tdiam tdiam_abs tdiam_rel tdiv	\
+-    tdiv_2exp tdiv_2si tdiv_2ui tdiv_d tdiv_ext tdiv_fr tdiv_q	\
++    tdiv_2exp tdiv_2si tdiv_2ui tdiv_d tdiv_fr tdiv_q	\
+     tdiv_si tdiv_ui tdiv_z terror texp texp2 texpm1 tfr_div	\
+     tfr_sub tget_d tget_endpoints tget_fr thas_zero thypot	\
+     tincrease tinf_p tinit tinits tinit_set tintersect tinterv_d	\
+--- a/tests/mpfi-tests.h
++++ b/tests/mpfi-tests.h
+@@ -28,6 +28,7 @@
+ #define __MPFI_TESTS_H__
+ 
+ #include <stdlib.h>
++#include <stdint.h>
+ 
+ #include "mpfi_io.h"
+ #include "mpfi-impl.h"

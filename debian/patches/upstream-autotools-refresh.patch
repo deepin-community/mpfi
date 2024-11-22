@@ -1,0 +1,46 @@
+Description: upstream -- autotoolization: refresh
+ Attempt to refresh and rationalize further the autotools machinery;
+ meant to be submitted to the upstream maintainer team.
+Origin: debian
+Author: Jerome Benoit <calculus@rezozer.net>
+Last-Update: 2018-01-17
+
+--- a/configure.ac
++++ b/configure.ac
+@@ -9,10 +9,13 @@
+ AC_CONFIG_MACRO_DIR([m4])
+ AC_CONFIG_AUX_DIR([build-aux])
+ AC_USE_SYSTEM_EXTENSIONS
+-AM_INIT_AUTOMAKE([1.9 -Wall -Werror dist-bzip2 dist-zip])
++AM_INIT_AUTOMAKE([1.9 -Wall dist-bzip2 dist-zip])
+ AM_SILENT_RULES([no])
+ AM_MAINTAINER_MODE([])
+ 
++# Check for which system.
++AC_CANONICAL_HOST
++
+ dnl Extra arguments to configure
+ AC_ARG_WITH([mpfr_include],
+             [AS_HELP_STRING([--with-mpfr-include=DIR],[MPFR include directory])],
+--- a/doc/Makefile.am
++++ b/doc/Makefile.am
+@@ -1,2 +1 @@
+ info_TEXINFOS = mpfi.texi
+-TEXINFO_TEX = ../texinfo.tex
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -1,5 +1,5 @@
+ ACLOCAL_AMFLAGS = -I m4
++
+ SUBDIRS = src tests doc
+ 
+-include_HEADERS = src/mpfi.h src/mpfi_io.h
+ EXTRA_DIST = mpfi_config.h.in
+--- a/src/Makefile.am
++++ b/src/Makefile.am
+@@ -1,3 +1,5 @@
++include_HEADERS = mpfi.h mpfi_io.h
++
+ lib_LTLIBRARIES = libmpfi.la
+ 
+ # apparently the type "intmax_t" s not always known
