@@ -1,9 +1,90 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: template-repository
-Source: https://github.com/deepin-community/template-repository
+Upstream-Name: mpfi
+Upstream-Contact:
+ Nathalie Revol <nathalie.revol@inria.fr>
+ Fabrice Rouillier <fabrice.rouillier@inria.fr>
+Source: https://gitlab.inria.fr/mpfi/mpfi
+Files-Excluded:
+ doc/mpfi.info
+ doc/Makefile.in
+ tests/Makefile.in
+ src/Makefile.in
+ m4/ltversion.m4
+ m4/ltoptions.m4
+ m4/libtool.m4
+ m4/ltsugar.m4
+ m4/lt~obsolete.m4
+ aclocal.m4
+ mpfi_config.h.in
+ Makefile.in
+ build-aux/missing
+ build-aux/ltmain.sh
+ build-aux/test-driver
+ build-aux/install-sh
+ build-aux/ar-lib
+ build-aux/compile
+ build-aux/depcomp
+ build-aux/config.sub
+ build-aux/config.guess
+ configure
+ INSTALL
 
 Files: *
-Copyright: 2023 Tsic404 <liuheng@deepin.org>
+Copyright:
+ 1999-2024 Spaces and Arenaire INRIA projects, Lab. ANO - USTL
+License: LGPL-2.1+
+
+Files:
+ tests/random.c
+ tests/mpfi-tests.c
+Copyright:
+ 1999-2021 Spaces and Arenaire INRIA projects, Lab. ANO - USTL
+License: LGPL-2+
+
+Files: debian/*
+Copyright:
+ 2015-2024 Jerome Benoit <calculus@rezozer.net>
+ 2005-2014 Laurent Fousse <lfousse@debian.org>
+License: GPL-2+
+Comment:
+ This package was originally debianized by Laurent Fousse <lfousse@debian.org>
+ on Wed 2005-08-10.
+
+License: LGPL-2+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation, either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License
+ along with this program. If not, see <http://www.gnu.org/licenses/>.
+ .
+ On Debian system, the complete text of the GNU Lesser General Public
+ License version 2 can be found in "/usr/share/common-licenses/LGPL-2".
+
+License: LGPL-2.1+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of the GNU Lesser General Public License as published by
+ the Free Software Foundation; either version 2.1, or (at your option)
+ any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Lesser General Public License for more details.
+ .
+ You should have received a copy of the GNU Lesser General Public License along
+ with this program; if not, write to the Free Software Foundation,
+ Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ .
+ On Debian systems, the complete text of the GNU Lesser General Public
+ License version 2.1 can be found in "/usr/share/common-licenses/LGPL-2.1".
+
 License: GPL-2+
  This package is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
@@ -12,11 +93,11 @@ License: GPL-2+
  .
  This package is distributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  GNU General Public License for more details.
  .
  You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>
+ along with this package. If not, see <http://www.gnu.org/licenses/>.
  .
  On Debian systems, the complete text of the GNU General
  Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".

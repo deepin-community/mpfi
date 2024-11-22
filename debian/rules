@@ -1,4 +1,52 @@
 #!/usr/bin/make -f
+include /usr/share/dpkg/pkg-info.mk
+
+export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+
+export ACLOCAL_PATH=/usr/share/gnulib/m4
+
+## inspired from mpfr material
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else ifeq ($(DEB_HOST_ARCH),alpha)
+	CFLAGS += -mieee
+else ifeq ($(DEB_HOST_ARCH),sha4)
+	CFLAGS += -mieee
+else
+	CFLAGS := $(subst -O2,-O3,$(CFLAGS))
+endif
+
+default:
+	@uscan --no-conf --dehs --report || true
 
 %:
-	dh $@
+	dh $@ --builddirectory=_build
+
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-maintainer-mode
+
+override_dh_auto_build-indep:
+	$(MAKE) -C _build/doc info pdf
+
+override_dh_auto_build-arch:
+	dh_auto_build -a
+
+override_dh_auto_test-indep:
+
+override_dh_auto_install-indep:
+	$(MAKE) -C _build/src install-data-am DESTDIR=$(CURDIR)/debian/tmp
+	$(MAKE) -C _build/doc install-info install-pdf DESTDIR=$(CURDIR)/debian/tmp
+
+override_dh_installdocs:
+	dh_installdocs -plibmpfi-dev --link-doc=libmpfi0
+	dh_installdocs -plibmpfi-doc --doc-main-package=libmpfi-doc
+	dh_installdocs --remaining-packages
+
+override_dh_installexamples:
+	dh_installexamples -plibmpfi-doc --doc-main-package=libmpfi-doc
+
+override_dh_compress-indep:
+	dh_compress -X.pdf -Xexamples
+
+override_dh_missing:
+	dh_missing -X.la
